@@ -33,3 +33,16 @@
         elog_start();
     }
     ```
+- Makefile参考代码
+    ```makefile
+    CFLAGS += -I./easy_logger/inc -I./easy_logger/plugins/file
+
+    LDFLAGS += -lpthread
+
+    EASY_LOGGER_PATH = ./easy_logger
+
+    EASY_LOGGER_SRC := $(wildcard $(EASY_LOGGER_PATH)/plugins/file/*.c)
+    EASY_LOGGER_SRC += $(wildcard $(EASY_LOGGER_PATH)/port/*.c)
+    EASY_LOGGER_SRC += $(wildcard $(EASY_LOGGER_PATH)/src/*.c)
+    EASY_LOGGER_OBJ = $(patsubst %.c, %.o, $(EASY_LOGGER_SRC))
+    ```
