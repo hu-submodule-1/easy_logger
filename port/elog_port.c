@@ -31,6 +31,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <time.h>
+#include <sys/time.h>
 #include <sys/syscall.h>
 
 #ifdef ELOG_FILE_ENABLE
@@ -109,13 +110,15 @@ void elog_port_output_unlock(void) {
 const char *elog_port_get_time(void) {
     static char cur_system_time[24] = { 0 };
 
-    time_t cur_t;
-    struct tm cur_tm;
+    struct timeval tv = {0};
+    struct tm tm_local = {0};
 
-    time(&cur_t);
-    localtime_r(&cur_t, &cur_tm);
+    gettimeofday(&tv, NULL);
+    localtime_r(&tv.tv_sec, &tm_local);
 
-    strftime(cur_system_time, sizeof(cur_system_time), "%Y-%m-%d %T", &cur_tm);
+    snprintf(cur_system_time, sizeof(cur_system_time), "%4d-%02d-%02d %02d:%02d:%02d.%03ld",
+             (1900 + tm_local.tm_year), (1 + tm_local.tm_mon), tm_local.tm_mday,
+             tm_local.tm_hour, tm_local.tm_min, tm_local.tm_sec, tv.tv_usec);
 
     return cur_system_time;
 }
