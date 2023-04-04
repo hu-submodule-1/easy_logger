@@ -30,8 +30,9 @@
 #define __ELOG_FILE__H__
 
 #include <stdio.h>
-#include <elog.h>
-#include <elog_file_cfg.h>
+
+#include "../../inc/elog.h"
+#include "./elog_file_cfg.h"
 
 #ifdef __cplusplus
 extern "C" {

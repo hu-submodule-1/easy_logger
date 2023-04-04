@@ -26,7 +26,8 @@
  * Created on: 2016-11-06
  */
 
-#include <elog.h>
+#include "../inc/elog.h"
+
 #include <string.h>
 
 #ifdef ELOG_ASYNC_OUTPUT_ENABLE
@@ -374,7 +375,7 @@ void elog_async_deinit(void) {
     elog_async_output_notice();
 
     pthread_join(async_output_thread, NULL);
-    
+
     sem_destroy(&output_notice);
 #endif
 

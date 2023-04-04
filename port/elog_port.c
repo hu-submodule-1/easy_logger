@@ -26,7 +26,8 @@
  * Created on: 2015-04-28
  */
 
-#include <elog.h>
+#include "../inc/elog.h"
+
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
@@ -35,7 +36,7 @@
 #include <sys/syscall.h>
 
 #ifdef ELOG_FILE_ENABLE
-#include <elog_file.h>
+#include "../plugins/file/elog_file.h"
 #endif
 static pthread_mutex_t output_lock;
 

@@ -35,8 +35,8 @@
 
 #include <unistd.h>
 
-#include <elog_file.h>
-#include <elog_file_cfg.h>
+#include "./elog_file.h"
+#include "./elog_file_cfg.h"
 
 #define ELOG_FILE_SEM_KEY   ((key_t)0x19910612)
 #ifdef _SEM_SEMUN_UNDEFINED
@@ -96,7 +96,7 @@ void elog_file_port_deinit(void)
 }
 
 /**
- * initialize the lock 
+ * initialize the lock
  */
 static void lock_init(void)
 {
@@ -130,7 +130,7 @@ __exit:
 }
 
 /**
- * gets the lock 
+ * gets the lock
  */
 static int lock_open(void)
 {
@@ -164,7 +164,7 @@ err:
 }
 
 /**
- * deinitialize the lock 
+ * deinitialize the lock
  */
 static void lock_deinit(void)
 {
